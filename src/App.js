@@ -2,6 +2,7 @@ import React, { useReducer } from 'react';
 import './App.scss';
 //components
 import Days from './components/DaysForecast';
+import Preloader from './components/Preloader/Preloader';
 import Search from './components/Search';
 import WeatherInfo from './components/WeatherInfo';
 import weatherReducer, { initialState, setCityName } from './Reducers/weather-reducer';
@@ -11,7 +12,8 @@ import useThunk from './utils/useThunk';
 
 const App = (props) => {
 	const [state, dispatch] = useThunk(weatherReducer, initialState);
-	console.log(state);
+
+	if(state.isFetching) return <Preloader />;
 	return (
 		<div className='App'>
 			<div className='App__container'>

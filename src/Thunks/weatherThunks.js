@@ -1,8 +1,9 @@
 import { weatherAPI } from "../api";
 import { getDate } from "../helpers/dateParse";
-import { fetchForecastSuccess, SET_FIVE_DAYS_FORECAST } from "../Reducers/weather-reducer"
+import { fetchForecastSuccess, SET_FIVE_DAYS_FORECAST, toggleIsFetching } from "../Reducers/weather-reducer"
 
 export const getFiveDaysForecast = (cityName) => async (dispatch) => {
+	dispatch(toggleIsFetching(true));
 	const [coords] = await weatherAPI.getCoords(cityName);
 	const weatherData = await weatherAPI.getResponse(coords.lat, coords.lon);
 
@@ -22,4 +23,5 @@ export const getFiveDaysForecast = (cityName) => async (dispatch) => {
 		}
 	}
 	dispatch(fetchForecastSuccess(days));
+	dispatch(toggleIsFetching(false));
 }

@@ -13,9 +13,26 @@
 			background-color: rgba($color: #fff, $alpha: 0.4);
 			border: 1px solid rgb(211, 33, 33);
 		}
-		&__icon {}
+		&__wind {
+			@include row-align;
+		}
+		&__wind-icon {
+			margin-right: 16px;
+			width: 30px;
+			height: 30px;
+			img {
+				width: 100%;
+			}
+		}
+		&__wind-speed {
+			@include bigText;
+		}
+		&__icon {
+			margin-bottom: 8px;
+		}
 		&__temperature {
-			@include bigText; 
+			margin-bottom: 8px;
+			@include smallTitle; 
 		}
 	}
 }

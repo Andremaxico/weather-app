@@ -1,0 +1,12 @@
+@import '../../global-styles';
+
+.Preloader {
+	position: absolute;
+	top: 30%;
+	left: 50%;
+	transform: translateX(-50%);
+	img {
+		width: 200px;
+		height: 200px;
+	}
+}

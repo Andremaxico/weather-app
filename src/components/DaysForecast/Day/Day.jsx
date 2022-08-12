@@ -1,5 +1,6 @@
 import React from 'react'
 import { getHour } from '../../../helpers/dateParse';
+import windDirection from '../../../assets/images/wind-direction.png';
 
 const Day = ({forecast}) => {
 	let hoursForecasts = {};
@@ -16,7 +17,13 @@ const Day = ({forecast}) => {
 				icon
 			</div>
 			<div className="Day__temperature">{Math.round(nowForecast.main?.temp)}°C</div>
-			<p className="Day__time"></p>
+			<p className="Day__time">Now</p>
+			<div className="Day__wind">
+				<div className="Day__wind-icon">
+					<img src={windDirection} style={{transform: 'rotate( ' + nowForecast.wind.deg +'deg)'}} alt="wind arrow" />
+				</div>
+				<p className="Day__wind-speed">{nowForecast.wind.speed} m/s</p>
+			</div>
 		</div>
 	)
 }
