@@ -1,0 +1,21 @@
+@import '../../global-styles';
+
+.DaysForecast {
+	display: flex;
+	.Day {
+		padding: 12px;
+		@include column-align;
+		width: 200px;
+		height: 150px;
+		border-radius: 12px;
+		background-color: rgba($color: #fff, $alpha: 0.2);
+		&.active {
+			background-color: rgba($color: #fff, $alpha: 0.4);
+			border: 1px solid rgb(211, 33, 33);
+		}
+		&__icon {}
+		&__temperature {
+			@include bigText; 
+		}
+	}
+}

@@ -1,0 +1,14 @@
+@import '../../../global-styles';
+
+.Input {
+	position: relative;
+	&__field {
+		@include input;
+	}
+	&__btn {
+		position: absolute;
+		top: 50%;
+		right: -5px;
+		transform: translate(100%, -50%);
+	}
+}

@@ -1,0 +1,15 @@
+@import './global-styles';
+
+.App {
+	@include column-align;
+	align-items: center;
+	height: 100vh;
+	background-color: $mainCol;
+	&__container {
+		max-width: 900px;
+		margin: 0 auto;
+	}
+	&__title {
+		@include title;
+	}
+}
