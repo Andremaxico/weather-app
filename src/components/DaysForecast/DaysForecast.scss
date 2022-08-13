@@ -2,16 +2,27 @@
 
 .DaysForecast {
 	display: flex;
+	width: 100%;
 	.Day {
 		padding: 12px;
 		@include column-align;
-		width: 200px;
-		height: 150px;
+		flex: 1 1 20%;
 		border-radius: 12px;
 		background-color: rgba($color: #fff, $alpha: 0.2);
-		&.active {
+		&.current {
 			background-color: rgba($color: #fff, $alpha: 0.4);
 			border: 1px solid rgb(211, 33, 33);
+		}
+		&__weather-icon {
+			@include center-align;
+			width: 40px;
+			height: 40px;
+			margin-bottom: 12px;
+			overflow: hidden;
+			img {
+				width: 130%;
+				height: 130%;
+			}
 		}
 		&__wind {
 			@include row-align;
@@ -23,6 +34,10 @@
 			img {
 				width: 100%;
 			}
+		}
+		&__time {
+			@include bigText;
+			margin-bottom: 8px;
 		}
 		&__wind-speed {
 			@include bigText;
