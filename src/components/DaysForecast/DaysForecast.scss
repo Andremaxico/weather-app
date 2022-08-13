@@ -5,10 +5,14 @@
 	width: 100%;
 	.Day {
 		padding: 12px;
+		margin-right: 8px;
 		@include column-align;
 		flex: 1 1 20%;
 		border-radius: 12px;
 		background-color: rgba($color: #fff, $alpha: 0.2);
+		&:last-child {
+			margin-right: 0;
+		}
 		&.current {
 			background-color: rgba($color: #fff, $alpha: 0.4);
 			border: 1px solid rgb(211, 33, 33);
@@ -35,9 +39,11 @@
 				width: 100%;
 			}
 		}
-		&__time {
-			@include bigText;
+		&__time {			
 			margin-bottom: 8px;
+			@include bigText;
+			font-style: italic;
+			color: rgb(211, 33, 33);
 		}
 		&__wind-speed {
 			@include bigText;

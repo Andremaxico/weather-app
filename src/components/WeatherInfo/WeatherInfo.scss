@@ -2,11 +2,52 @@
 
 .WeatherInfo {
 	display: flex;
-	.hourForecast {
+	.HourForecast {
 		flex: 1 1 12.5%;
 		margin-right: 8px;
 		&:last-child {
 			margin-right: 0;
+		}
+		@include column-align;
+		&.current {
+			background-color: rgba($color: #fff, $alpha: 0.4);
+			border: 1px solid rgb(211, 33, 33);
+		}
+		&__weather-icon {
+			@include center-align;
+			width: 40px;
+			height: 40px;
+			margin-bottom: 12px;
+			overflow: hidden;
+			img {
+				width: 130%;
+				height: 130%;
+			}
+		}
+		&__wind {
+			@include row-align;
+		}
+		&__wind-icon {
+			margin-right: 16px;
+			width: 30px;
+			height: 30px;
+			img {
+				width: 100%;
+			}
+		}
+		&__time {
+			@include bigText;
+			margin-bottom: 8px;
+		}
+		&__wind-speed {
+			@include bigText;
+		}
+		&__icon {
+			margin-bottom: 8px;
+		}
+		&__temperature {
+			margin-bottom: 8px;
+			@include smallTitle; 
 		}
 	}
 }

@@ -3,10 +3,11 @@ import { getDate } from "../helpers/dateParse";
 import { fetchForecastSuccess, setCurrentDayForecast, toggleIsFetching } from "../Reducers/weather-reducer"
 
 export const getCurrentDayForecast = (date, forecast) => async (dispatch) => {
+	console.log('set day forecast');
+	console.log(date, forecast);
 	const [dayForecast] = forecast.filter(currDay => currDay.date === date);
-	console.log(dayForecast);
-	const hoursForecast = dayForecast.hour.filter((hour, index) => index / 3 % 1 === 0);
-	dispatch(setCurrentDayForecast(hoursForecast));
+	const hoursForecast = dayForecast.hour.filter((hour, index) => index / 4 % 1 === 0);
+	dispatch(setCurrentDayForecast({date, ...hoursForecast}));
 }
 
 export const getFewDaysForecast = (coords) => async (dispatch) => {

@@ -1,15 +1,10 @@
 import React, { useEffect, useState, useReducer } from 'react';
-import { weatherAPI } from '../../api';
+import './WeatherInfo.scss';
 import { kphToMps } from '../../helpers/converters';
 import { getHour } from '../../helpers/dateParse';
-import weatherReducer, { initialState } from '../../Reducers/weather-reducer';
-import { getfewHourForecastsForecast } from '../../Thunks/weatherThunks';
-import useThunk from '../../utils/useThunk';
 import windDirection from '../../assets/images/wind-direction.png';
 
 const WeatherInfo = ({forecast}) => {
-	const [state, dispatch] = useThunk(weatherReducer, initialState);
-	console.log(forecast);
 	return (
 		<div className='WeatherInfo'>
 			{forecast.map(hourForecast => {

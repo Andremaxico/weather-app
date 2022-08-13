@@ -14,14 +14,13 @@ export const SET_CURRENT_DAY_FORECAST = 'SET_CURRENT_DAY_FORECAST';
 const weatherReducer = (state = initialState, action) => {
 	switch (action.type) {
 		case SET_FIVE_DAYS_FORECAST:
-			console.log('set-forecas');
 			return {...state, fewDaysForecast: action.forecast};
 		case SET_CITY_NAME:
 			return {...state, cityName: action.cityName}
 		case TOGGLE_IS_FETCHING:
 			return {...state, isFetching: action.value}
 		case SET_CURRENT_DAY_FORECAST:
-			console.log('set-current-day-forecast');
+			console.log(action.forecast);
 			return {...state, currentDayForecast: action.forecast}
 		default:
 			return state;

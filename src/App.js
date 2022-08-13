@@ -1,7 +1,7 @@
 import React, { useReducer, useEffect } from 'react';
 import './App.scss';
 //components
-import Days from './components/DaysForecast';
+import DaysForecast from './components/DaysForecast';
 import Preloader from './components/Preloader/Preloader';
 import Search from './components/Search';
 import WeatherInfo from './components/WeatherInfo';
@@ -14,24 +14,30 @@ import useThunk from './utils/useThunk';
 const App = (props) => {
 	const [state, dispatch] = useThunk(weatherReducer, initialState);
 
-	window.state = state;
+	console.log(state);
 
 	const getForecastByCityName = async (cityName) => {
 		const coords = await geoDecoder(cityName);
 		dispatch(getFewDaysForecast(coords));
 	}
 
+	console.log(state.fewDaysForecast); 
+
 	useEffect(() => {
-		navigator.geolocation.getCurrentPosition(async function(position) {
-			const coords = {
-				lat: position.coords.latitude, 
-				lon: position.coords.longitude
-			};
-			const cityName = await geoCoder(coords.lat, coords.lon);
-			dispatch(getFewDaysForecast(coords));
-			dispatch(setCityName(cityName));
-		});
-	}, [])
+		if(!state.cityName) {
+			navigator.geolocation.getCurrentPosition(async function(position) {
+				const coords = {
+					lat: position.coords.latitude, 
+					lon: position.coords.longitude
+				};
+				const cityName = await geoCoder(coords.lat, coords.lon);
+				dispatch(getFewDaysForecast(coords));
+				dispatch(setCityName(cityName));
+			});
+		} else {
+			getForecastByCityName(state.cityName)
+		}
+	}, [state.cityName]);
 
 	if(state.isFetching) return <Preloader />;
 	return (
@@ -45,7 +51,9 @@ const App = (props) => {
 				/>
 				{ state.cityName && 
 					<>
-						<Days cityName={state.cityName}/>
+						<DaysForecast 
+							fewDaysForecast={state.fewDaysForecast}
+						/>
 						<WeatherInfo forecast={state.currentDayForecast}/>
 					</>
 				}
