@@ -21,8 +21,6 @@ const App = (props) => {
 		dispatch(getFewDaysForecast(coords));
 	}
 
-	console.log(state.fewDaysForecast); 
-
 	useEffect(() => {
 		if(!state.cityName) {
 			navigator.geolocation.getCurrentPosition(async function(position) {
@@ -49,12 +47,12 @@ const App = (props) => {
 					setForecast={(cityName) => getForecastByCityName(cityName)}
 					cityName={state.cityName}
 				/>
-				{ state.cityName && 
+				{ state.currentDayForecast && state.fewDaysForecast && 
 					<>
 						<DaysForecast 
 							fewDaysForecast={state.fewDaysForecast}
 						/>
-						<WeatherInfo forecast={state.currentDayForecast}/>
+						<WeatherInfo currentDayForecast={state.currentDayForecast}/>
 					</>
 				}
 			</div>

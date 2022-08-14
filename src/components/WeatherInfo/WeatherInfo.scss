@@ -2,6 +2,9 @@
 
 .WeatherInfo {
 	display: flex;
+	padding: 8px;
+	border-radius: 12px;
+	background-color: rgba($color: #fff, $alpha: 0.4);
 	.HourForecast {
 		flex: 1 1 12.5%;
 		margin-right: 8px;
@@ -9,8 +12,7 @@
 			margin-right: 0;
 		}
 		@include column-align;
-		&.current {
-			background-color: rgba($color: #fff, $alpha: 0.4);
+		&.current { 
 			border: 1px solid rgb(211, 33, 33);
 		}
 		&__weather-icon {
@@ -37,6 +39,8 @@
 		}
 		&__time {
 			@include bigText;
+			text-align: center;
+			width: 100%;
 			margin-bottom: 8px;
 		}
 		&__wind-speed {

@@ -13,6 +13,14 @@
 		&:last-child {
 			margin-right: 0;
 		}
+		&__date {
+			margin-bottom: 4px;
+			@include text;
+			font-style: italic;
+			width: 100%;
+			color: #fff;
+			white-space: nowrap;
+		}
 		&.current {
 			background-color: rgba($color: #fff, $alpha: 0.4);
 			border: 1px solid rgb(211, 33, 33);
@@ -52,8 +60,20 @@
 			margin-bottom: 8px;
 		}
 		&__temperature {
+			@include column-align;
 			margin-bottom: 8px;
 			@include smallTitle; 
+			span {
+				margin-bottom: 2px;
+				&:first-child {
+			
+				}
+			}
+			.temperature-feels {
+				@include text;
+				color: rgb(211, 33, 33);
+				font-style: italic;
+			}
 		}
 	}
 }
