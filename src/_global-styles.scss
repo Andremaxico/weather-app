@@ -40,6 +40,9 @@ $mainCol: rgba(41, 141, 223, 0.884);
 $black: rgb(51, 51, 51);
 $grayBg: #fefefe;
 $gray: rgb(131, 131, 131);
+$red: rgb(211, 33, 33);
+$orange: rgb(238, 95, 0);
+$green: rgb(75, 204, 0);
 //mixins
 @mixin font-style($fz, $lh, $fw: 400, $col: #fff) {
     font-size: $fz;

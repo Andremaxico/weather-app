@@ -51,7 +51,7 @@ const App = (props) => {
 				{ state.currentDayForecast && state.fewDaysForecast && 
 					<>
 						<DaysForecast 
-							fewDaysForecast={state.fewDaysForecast}
+							fewDaysForecast={state.fewDaysForecast} currentWeather={state.currentWeather}
 							setDayForecast={setDayForecast} currentDayForecast={state.currentDayForecast}
 						/>
 						<WeatherInfo currentDayForecast={state.currentDayForecast}/>

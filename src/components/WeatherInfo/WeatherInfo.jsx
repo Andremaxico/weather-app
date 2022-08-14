@@ -18,6 +18,7 @@ const WeatherInfo = ({currentDayForecast}) => {
 		comparator: comparator1
 	};
 	const closestHour = getClosest(settings);
+	
 	return (
 		<div className='WeatherInfo'>
 			{forecast.map(hourForecast => <HourForecast closestHour={closestHour} key={hourForecast.time} hourForecast={hourForecast}/>)}

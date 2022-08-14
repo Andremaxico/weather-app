@@ -7,3 +7,5 @@ export const getHour = (date) => date.match(timeRegexp)[0];
 export const getCurrentHour = () => new Date().getHours();
 
 export const getCurrentDate = () =>  new Date().toLocaleDateString().split('.').reverse().join('-');
+
+export const getDaysFromMs = (ms) => ms / 8640000; 

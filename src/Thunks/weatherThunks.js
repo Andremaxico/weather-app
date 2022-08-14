@@ -1,6 +1,6 @@
 import { weatherAPI } from "../api";
 import { getDate, getHour } from "../helpers/dateParse";
-import { fetchForecastSuccess, setCurrentDayForecast, toggleIsFetching } from "../Reducers/weather-reducer"
+import { fetchForecastSuccess, setCurrentDayForecast, setCurrentWeather, toggleIsFetching } from "../Reducers/weather-reducer"
 
 export const getCurrentDayForecast = (date, forecast) => async (dispatch) => {
 	const [dayForecast] = forecast.filter(currDay => currDay.date === date);
@@ -19,6 +19,7 @@ export const getCurrentDayForecast = (date, forecast) => async (dispatch) => {
 export const getFewDaysForecast = (coords) => async (dispatch) => {
 	dispatch(toggleIsFetching(true));
 	const weatherData = await weatherAPI.getForecast(coords, 5);
+	window.data = weatherData;
 	/*//yyyy-mm-dd
 	let dates = [];
 	//{hour: {}}
@@ -36,6 +37,7 @@ export const getFewDaysForecast = (coords) => async (dispatch) => {
 	}*/
 	const todayDate = new Date().toLocaleDateString().split('.').reverse().join('-');
 	dispatch(fetchForecastSuccess(weatherData.forecast.forecastday));
+	dispatch(setCurrentWeather(weatherData.current));
 	//manacha, dispatch doesn't works
 	getCurrentDayForecast(todayDate, weatherData.forecast.forecastday)(dispatch);
 	dispatch(toggleIsFetching(false));

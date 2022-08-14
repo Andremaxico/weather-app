@@ -1,15 +1,20 @@
 @import '../../global-styles';
 
+@mixin dayStyles {
+	padding: 12px;
+	margin-right: 8px;
+	@include column-align;
+	border-radius: 12px 12px 0 0;
+	background-color: rgba($color: #fff, $alpha: 0.2);
+}
+
 .DaysForecast {
+	position: relative;
 	display: flex;
 	width: 100%;
-	.Day {
-		padding: 12px;
-		margin-right: 8px;
-		@include column-align;
+	.Day, .CurrentWeather {
 		flex: 1 1 20%;
-		border-radius: 12px;
-		background-color: rgba($color: #fff, $alpha: 0.2);
+		@include dayStyles();
 		&:last-child {
 			margin-right: 0;
 		}
@@ -23,9 +28,8 @@
 		}
 		&.current {
 			background-color: rgba($color: #fff, $alpha: 0.4);
-			border: 1px solid rgb(211, 33, 33);
 		}
-		&__weather-icon {
+		&__sky-icon {
 			@include center-align;
 			width: 40px;
 			height: 40px;
@@ -36,44 +40,45 @@
 				height: 130%;
 			}
 		}
-		&__wind {
-			@include row-align;
-		}
-		&__wind-icon {
-			margin-right: 16px;
-			width: 30px;
-			height: 30px;
-			img {
-				width: 100%;
+		&__wind-info {
+			.direction-icon {
+				@include row-align;
+				margin-right: 16px;
+				width: 30px;
+				height: 30px;
+				img {
+					width: 100%;
+				}
+			}
+			.speed {
+				@include bigText;
 			}
 		}
 		&__time {			
 			margin-bottom: 8px;
 			@include bigText;
 			font-style: italic;
-			color: rgb(211, 33, 33);
-		}
-		&__wind-speed {
-			@include bigText;
+			color: $red;
 		}
 		&__icon {
 			margin-bottom: 8px;
 		}
-		&__temperature {
+		&__temperature-info {
 			@include column-align;
 			margin-bottom: 6px;
 			@include smallTitle; 
-			span {
+			.value {
 				margin-bottom: 2px;
 				&:last-child {
 					margin-bottom: 0;
 				}
 			}
-			.temperature-feels {
+			.treal-feels {
 				@include text;
-				color: rgb(211, 33, 33);
+				color: $red;
 				font-style: italic;
 			}
 		}
 	}
+	.CurrentWeather {}
 }

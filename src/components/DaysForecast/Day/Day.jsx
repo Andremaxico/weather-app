@@ -21,20 +21,23 @@ const Day = ({forecast, currentDayForecast, setDayForecast}) => {
 	const dateString = new Date(forecast.date).toLocaleDateString({}, {weekday: 'long', day: '2-digit', month: 'long'});
 	return (
 		<button className={`Day ${isCurrentDay && 'current'}`} onClick={() => setDayForecast(forecast.date)}>
-			<p className="Day__date">{dateString[0].toUpperCase() + dateString.slice(1)}</p>
-			<div className="Day__weather-icon" title={avgForecast.condition.text}>
+			<p className={`Day__title Day__date ${isToday && '_today'}`}>
+				{dateString[0].toUpperCase() + dateString.slice(1)}
+			</p>
+
+			<div className="Day__sky-icon" title={avgForecast.condition.text}>
 				<img src={`http:${avgForecast.condition.icon}`} alt="condition icon" />
 			</div>
-			<div className="Day__temperature">
-			 	<span>{avgForecast.avgtemp_c}°C</span>
-				{isToday &&<span className='temperature-feels'>Feels: {realFeels}</span>}
+
+			<div className="Day__temperature-info">
+			 	<span className='value'>{avgForecast.avgtemp_c}°C</span>
 			</div>
-			{isToday && <p className="Day__time">Now</p>}
-			<div className="Day__wind">
-				<div className="Day__wind-icon">
+
+			<div className="Day__wind-info">
+				<div className="direction-icon">
 					<img src={windDirection} style={{transform: 'rotate( ' + avgForecast.maxwindkph +'deg)'}} alt="wind arrow" />
 				</div>
-				<p className="Day__wind-speed">{wind_mps} m/s</p>
+				<p className="speed">{wind_mps} m/s</p>
 			</div>
 		</button>
 	)
