@@ -5,18 +5,14 @@ import useThunk from '../../utils/useThunk';
 import Day from './Day';
 import './DaysForecast.scss';
 
-const Days = ({fewDaysForecast}) => {
-	const [state, dispatch] = useThunk(weatherReducer, initialState);
-
-	const setDayForecast = (date) => dispatch(getCurrentDayForecast(date, fewDaysForecast)); 
-
+const Days = ({fewDaysForecast, setDayForecast, currentDayForecast}) => {
 	return (
 		<div className='DaysForecast'>
 			{ fewDaysForecast.length > 0 &&
 			  fewDaysForecast.map((dayForecast) => {
 				return <Day 
 					forecast={dayForecast} setDayForecast={setDayForecast}
-					key={dayForecast.date} currentDayForecast={state.currentDayForecast}
+					key={dayForecast.date} currentDayForecast={currentDayForecast}
 				/>
 			})}
 		</div>

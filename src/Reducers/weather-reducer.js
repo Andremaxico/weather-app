@@ -20,7 +20,6 @@ const weatherReducer = (state = initialState, action) => {
 		case TOGGLE_IS_FETCHING:
 			return {...state, isFetching: action.value}
 		case SET_CURRENT_DAY_FORECAST:
-			console.log(action.forecast);
 			return {...state, currentDayForecast: action.forecast}
 		default:
 			return state;

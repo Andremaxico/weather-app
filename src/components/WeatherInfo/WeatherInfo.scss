@@ -2,15 +2,22 @@
 
 .WeatherInfo {
 	display: flex;
+	flex-wrap: wrap;
+	width: 100%;
 	padding: 8px;
+	gap: 8px;
 	border-radius: 12px;
 	background-color: rgba($color: #fff, $alpha: 0.4);
 	.HourForecast {
-		flex: 1 1 12.5%;
-		margin-right: 8px;
-		&:last-child {
-			margin-right: 0;
-		}
+		flex: 1 1 20%;
+		padding: 8px 12px;
+		border: 1px solid rgba($color: #fff, $alpha: 0.6);
+		border-radius: 6px;
+		/*&:not(:first-child) {
+			padding-left: 4px;
+			margin-left: 4px;
+			border-left: 1px solid rgb(211, 33, 33);
+		}*/
 		@include column-align;
 		&.current { 
 			border: 1px solid rgb(211, 33, 33);
@@ -42,6 +49,9 @@
 			text-align: center;
 			width: 100%;
 			margin-bottom: 8px;
+			&._currentHour {
+				color: rgb(211, 33, 33);
+			}
 		}
 		&__wind-speed {
 			@include bigText;

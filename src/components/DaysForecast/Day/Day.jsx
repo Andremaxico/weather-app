@@ -1,15 +1,16 @@
 import React from 'react'
-import { getHour } from '../../../helpers/dateParse';
+import { getCurrentDate, getCurrentHour, getHour } from '../../../helpers/dateParse';
 import windDirection from '../../../assets/images/wind-direction.png';
 import { kphToMps } from '../../../helpers/converters';
 
 const Day = ({forecast, currentDayForecast, setDayForecast}) => {
 	const avgForecast = forecast.day;
 	const wind_mps = kphToMps(avgForecast.avgvis_km);
-	const isToday = forecast.date === new Date().toLocaleDateString().split('.').reverse().join('-');
-	const isCurrentDay = forecast.date === currentDayForecast.date;
-	const currHour = new Date().getHours();
+	const currHour = getCurrentHour();
 	const realFeels = forecast.hour[currHour-1].feelslike_c;
+
+	const isToday = forecast.date === getCurrentDate();
+	const isCurrentDay = forecast.date === currentDayForecast.date;
 	/*for(let i = 0; i < forecast.length; i++) {
 		const currForecast = forecast[i];
 		const currHour = getHour(currForecast.dt_txt);

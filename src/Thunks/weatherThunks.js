@@ -1,10 +1,18 @@
 import { weatherAPI } from "../api";
-import { getDate } from "../helpers/dateParse";
+import { getDate, getHour } from "../helpers/dateParse";
 import { fetchForecastSuccess, setCurrentDayForecast, toggleIsFetching } from "../Reducers/weather-reducer"
 
 export const getCurrentDayForecast = (date, forecast) => async (dispatch) => {
 	const [dayForecast] = forecast.filter(currDay => currDay.date === date);
-	const hoursForecast = dayForecast.hour.filter((hour, index) => index / 4 % 1 === 0);
+	console.log(dayForecast);
+	const hoursForecast = dayForecast.hour.filter((forecast, index) => {
+		const hour = getHour(forecast.time).slice(0, 2);
+		if(hour < 6) {
+			return index / 3 % 1 === 0
+		} else if (hour > 6) {
+			return index / 2 % 1 === 0
+		}
+	});
 	dispatch(setCurrentDayForecast({date, hoursForecast}));
 }
 

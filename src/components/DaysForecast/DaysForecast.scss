@@ -61,12 +61,12 @@
 		}
 		&__temperature {
 			@include column-align;
-			margin-bottom: 8px;
+			margin-bottom: 6px;
 			@include smallTitle; 
 			span {
 				margin-bottom: 2px;
-				&:first-child {
-			
+				&:last-child {
+					margin-bottom: 0;
 				}
 			}
 			.temperature-feels {

@@ -7,18 +7,19 @@ import Search from './components/Search';
 import WeatherInfo from './components/WeatherInfo';
 import { geoCoder, geoDecoder } from './helpers/converters';
 import weatherReducer, { initialState, setCityName } from './Reducers/weather-reducer';
-import { getFewDaysForecast } from './Thunks/weatherThunks';
+import { getCurrentDayForecast, getFewDaysForecast } from './Thunks/weatherThunks';
 import useThunk from './utils/useThunk';
 
 
 const App = (props) => {
 	const [state, dispatch] = useThunk(weatherReducer, initialState);
 
-	console.log(state);
-
 	const getForecastByCityName = async (cityName) => {
 		const coords = await geoDecoder(cityName);
 		dispatch(getFewDaysForecast(coords));
+	}
+	const setDayForecast = (date) => {
+		dispatch(getCurrentDayForecast(date, state.fewDaysForecast)); 
 	}
 
 	useEffect(() => {
@@ -51,6 +52,7 @@ const App = (props) => {
 					<>
 						<DaysForecast 
 							fewDaysForecast={state.fewDaysForecast}
+							setDayForecast={setDayForecast} currentDayForecast={state.currentDayForecast}
 						/>
 						<WeatherInfo currentDayForecast={state.currentDayForecast}/>
 					</>
