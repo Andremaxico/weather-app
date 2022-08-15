@@ -4,6 +4,7 @@ import { kphToMps } from '../../helpers/converters';
 import { getCurrentHour, getHour } from '../../helpers/dateParse';
 import HourForecast from './HourForecast';
 import getClosest, { comparator1, comparator2 } from '../../helpers/getClosest';
+import withNetworkCheck from '../../hocs/withNetworkCheck';
 
 const WeatherInfo = ({currentDayForecast}) => {
 	const forecast = currentDayForecast.hoursForecast;
@@ -26,4 +27,4 @@ const WeatherInfo = ({currentDayForecast}) => {
 	)
 }
 
-export default WeatherInfo;
+export default withNetworkCheck(WeatherInfo);

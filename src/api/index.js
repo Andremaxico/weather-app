@@ -7,8 +7,6 @@ const instance = axios.create({
 	baseURL: 'http://api.weatherapi.com/v1/',
 });
 
-console.log(instance);
-
 export const weatherAPI = {
 	async getResponse(lat, lon, exclude='daily') {
 		console.log(lat, lon);

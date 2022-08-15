@@ -1,6 +1,6 @@
 import { weatherAPI } from "../api";
 import { getDate, getHour } from "../helpers/dateParse";
-import { fetchForecastSuccess, setCurrentDayForecast, setCurrentWeather, toggleIsFetching } from "../Reducers/weather-reducer"
+import { fetchForecastSuccess, setCurrentDayForecast, setCurrentWeather, setNetworkError, toggleIsFetching } from "../Reducers/weather-reducer"
 
 export const getCurrentDayForecast = (date, forecast) => async (dispatch) => {
 	const [dayForecast] = forecast.filter(currDay => currDay.date === date);
@@ -17,28 +17,36 @@ export const getCurrentDayForecast = (date, forecast) => async (dispatch) => {
 }
 
 export const getFewDaysForecast = (coords) => async (dispatch) => {
-	dispatch(toggleIsFetching(true));
-	const weatherData = await weatherAPI.getForecast(coords, 5);
-	window.data = weatherData;
-	/*//yyyy-mm-dd
-	let dates = [];
-	//{hour: {}}
-	let days = [];
+	try {
+		dispatch(toggleIsFetching(true));
+		const weatherData = await weatherAPI.getForecast(coords, 5);
+		console.log('weatherData', weatherData);
+		window.data = weatherData;
+		/*//yyyy-mm-dd
+		let dates = [];
+		//{hour: {}}
+		let days = [];
 
-	//[40: {}] -> {5: date:{}}
-	for(let i = 0; i < weatherData.forecast.forecastday; i++) {
-		const currData = weatherData.forecast.forecastday[i];
-		const date = getDate(currData.dt_txt);
-		if(!dates.includes(date)) {
-			const currDay = weatherData.list.filter((data) => getDate(data.dt_txt) === date);
-			days.push(currDay);
-			dates.push(date);
-		}
-	}*/
-	const todayDate = new Date().toLocaleDateString().split('.').reverse().join('-');
-	dispatch(fetchForecastSuccess(weatherData.forecast.forecastday));
-	dispatch(setCurrentWeather(weatherData.current));
-	//manacha, dispatch doesn't works
-	getCurrentDayForecast(todayDate, weatherData.forecast.forecastday)(dispatch);
-	dispatch(toggleIsFetching(false));
+		//[40: {}] -> {5: date:{}}
+		for(let i = 0; i < weatherData.forecast.forecastday; i++) {
+			const currData = weatherData.forecast.forecastday[i];
+			const date = getDate(currData.dt_txt);
+			if(!dates.includes(date)) {
+				const currDay = weatherData.list.filter((data) => getDate(data.dt_txt) === date);
+				days.push(currDay);
+				dates.push(date);
+			}
+		}*/
+		const todayDate = new Date().toLocaleDateString().split('.').reverse().join('-');
+		dispatch(fetchForecastSuccess(weatherData.forecast.forecastday));
+		dispatch(setCurrentWeather(weatherData.current));
+		//manacha, dispatch doesn't works
+		getCurrentDayForecast(todayDate, weatherData.forecast.forecastday)(dispatch);
+		dispatch(toggleIsFetching(false));
+		dispatch(setNetworkError(''));
+	} catch(e) {
+		console.log('error message', e.message);
+
+		if(e.code === 'ERR_NETWORK') dispatch(setNetworkError(e.message))
+	}
 }

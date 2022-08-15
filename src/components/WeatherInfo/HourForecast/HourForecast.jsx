@@ -8,7 +8,7 @@ const HourForecast = ({hourForecast, closestHour}) => {
 	const isToday = hourForecast.time.slice(0, 10) === getCurrentDate() ;
 	return (
 		<div className="HourForecast" key={hourForecast.time} 
-			style={isNow && isToday ? {borderColor: '$red'} : {}}
+			style={isNow && isToday ? {borderColor: 'rgb(211, 33, 33)'} : {}}
 		>
 			<h3 
 				className={` HourForecast__time ${isNow && isToday && '_currentHour'} `} 

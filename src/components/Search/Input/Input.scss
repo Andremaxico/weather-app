@@ -4,11 +4,22 @@
 	position: relative;
 	&__field {
 		@include input;
+		&::placeholder {
+			color: rgba($color: #fff, $alpha: 0.6);
+		}
 	}
 	&__btn {
 		position: absolute;
 		top: 50%;
 		right: -5px;
+		padding: 8px 12px;
+		color: #fff;
+		background-color: rgba($color: #fff, $alpha: 0.4);
+		border-radius: 4px;
 		transform: translate(100%, -50%);
+		transition: 0.2s;
+		&:hover {
+			background-color: transparent;
+		}
 	}
 }

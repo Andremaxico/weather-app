@@ -1,0 +1,24 @@
+@import '../../global-styles';
+
+.NetworkError {
+	position: absolute;
+	top: 40%;
+	left: 40%;
+	&__message {
+		p {
+			@include title;
+			color: $red !important;
+			&:last-child {
+				@include smallTitle;
+				font-style: italic;
+				font-weight: 400;
+			}
+		}
+	}
+	&__reload-btn {
+		padding: 8px 12px;
+		@include text;
+		border-radius: 4px;
+		background-color: $mainCol;
+	}
+}

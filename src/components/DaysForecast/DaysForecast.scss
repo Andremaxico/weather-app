@@ -18,7 +18,7 @@
 		&:last-child {
 			margin-right: 0;
 		}
-		&__date {
+		&__date, &__title {
 			margin-bottom: 4px;
 			@include text;
 			font-style: italic;
@@ -41,6 +41,7 @@
 			}
 		}
 		&__wind-info {
+			@include row-align;
 			.direction-icon {
 				@include row-align;
 				margin-right: 16px;
@@ -73,12 +74,14 @@
 					margin-bottom: 0;
 				}
 			}
-			.treal-feels {
+			.real-feels {
 				@include text;
 				color: $red;
 				font-style: italic;
 			}
 		}
 	}
-	.CurrentWeather {}
+	.CurrentWeather {
+		border: 1px solid $red;
+	}
 }

@@ -18,7 +18,7 @@ const Days = ({fewDaysForecast, setDayForecast, currentDayForecast, currentWeath
 		
 		return prevTimestamp <= timestamp && timestamp <= nextTimestamp;
 	})
-	console.log(daysToShow, fewDaysForecast);
+
 	return (
 		<div className='DaysForecast'>
 			<CurrentWeather weather={currentWeather} />
