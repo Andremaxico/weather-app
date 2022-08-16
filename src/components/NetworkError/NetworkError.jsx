@@ -9,7 +9,7 @@ const NetworkError = ({ message, ...rest }) => {
 				<p>{message || 'Some error occured'}</p>
 				<p>Plase try again</p>
 			</div>
-			<button className='NetworkError__btn' onClick={() => document.location.reload()}>Reload page</button>
+			<button className='NetworkError__reload-btn' onClick={() => document.location.reload()}>Reload page</button>
 		</div>
 	)
 }

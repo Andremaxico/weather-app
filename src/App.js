@@ -26,7 +26,9 @@ const App = (props) => {
 	}
 
 	useEffect(() => {
+		console.log('mounet');
 		if(!state.cityName) {
+			console.log('get geo');
 			const success = async (position) => {
 				const coords = {
 					lat: position.coords.latitude, 
@@ -52,10 +54,10 @@ const App = (props) => {
 	return (
 		<ErrorContext.Provider value={state.networkError}>
 			<div className='App'>
-				{state.isFetching && 
-					<Preloader />
-				||state.networkError &&
-					<NetworkError message={'Hi'} />
+				{(state.isFetching && 
+					<Preloader />)
+				||(state.networkError &&
+					<NetworkError message={'Hi'} />)
 				}
 				<div className='App__container'>
 					<h1 className='App__title'>Weather</h1>
