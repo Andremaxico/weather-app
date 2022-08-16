@@ -4,7 +4,6 @@ import { fetchForecastSuccess, setCurrentDayForecast, setCurrentWeather, setNetw
 
 export const getCurrentDayForecast = (date, forecast) => async (dispatch) => {
 	const [dayForecast] = forecast.filter(currDay => currDay.date === date);
-	console.log(dayForecast);
 	const hoursForecast = dayForecast.hour.filter((forecast, index) => {
 		const hour = getHour(forecast.time).slice(0, 2);
 		if(hour < 6) {
@@ -20,7 +19,6 @@ export const getFewDaysForecast = (coords) => async (dispatch) => {
 	try {
 		dispatch(toggleIsFetching(true));
 		const weatherData = await weatherAPI.getForecast(coords, 5);
-		console.log('weatherData', weatherData);
 		window.data = weatherData;
 		/*//yyyy-mm-dd
 		let dates = [];

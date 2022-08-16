@@ -25,8 +25,6 @@ const App = (props) => {
 		dispatch(getCurrentDayForecast(date, state.fewDaysForecast)); 
 	}
 
-	console.log('state, error: ', state.networkError);
-
 	useEffect(() => {
 		if(!state.cityName) {
 			const success = async (position) => {
@@ -50,7 +48,7 @@ const App = (props) => {
 
 	if(state.isFetching) return <Preloader />;
 	if(state.networkError) return <NetworkError />
-	//if(state.networkError) return <NetworkError />
+	console.log('rerender');
 	return (
 		<ErrorContext.Provider value={state.networkError}>
 			<div className='App'>

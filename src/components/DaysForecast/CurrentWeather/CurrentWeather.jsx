@@ -3,7 +3,6 @@ import windDirection from '../../../assets/images/wind-direction.png';
 import { kphToMps } from '../../../helpers/converters';
 
 const CurrentWeather = ({ weather }) => {
-	console.log(weather);
 	const wind_mps = kphToMps(weather.wind_kph);
 	return (
 		<div className='CurrentWeather'>

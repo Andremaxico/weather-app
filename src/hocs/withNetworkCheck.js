@@ -7,7 +7,6 @@ const withNetworkCheck = (Component) => (props) => {
 	return (
 		<ErrorContext.Consumer>
 			{error => {
-				console.log('with network check error', error);
 				if(error) {
 					return <NetworkError message={error}/>
 				}
