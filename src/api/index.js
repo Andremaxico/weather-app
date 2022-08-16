@@ -4,7 +4,7 @@ const API_KEY = '0018440325e94a6d98374825221308';
 const API_KEY_2 = '636f429c2c0f965eec6362d080ac0b8e';
 
 const instance = axios.create({
-	baseURL: 'http://api.weatherapi.com/v1/',
+	baseURL: 'https://api.weatherapi.com/v1/',
 });
 
 export const weatherAPI = {
@@ -18,11 +18,11 @@ export const weatherAPI = {
 		.then(res => res.data);
 	},
 	async getCoords(cityname) {
-		return instance.get(`http://api.openweathermap.org/geo/1.0/direct?q=${cityname}&limit=1&appid=${API_KEY_2}`)
+		return instance.get(`https://api.openweathermap.org/geo/1.0/direct?q=${cityname}&limit=1&appid=${API_KEY_2}`)
 		.then(res => res.data)
 	},
 	async getCityName(lat, lon) {
-		return instance.get(`http://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${lon}&limit=1&appid=${API_KEY_2}`)
+		return instance.get(`https://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${lon}&limit=1&appid=${API_KEY_2}`)
 		.then(res => res.data)
 	}
 }
